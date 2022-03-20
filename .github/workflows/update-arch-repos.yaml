@@ -10,3 +10,10 @@ jobs:
         run: cd ${{ github.workspace }}/arch-repos/
       - name: Update Repos
         run: ./scripts/update-repos.sh
+      - name: Upload Repo Database Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: repo-dbs
+          path: |
+            arch-repos/**/*.db
+            arch-repos/**/*.db.tar.xz
