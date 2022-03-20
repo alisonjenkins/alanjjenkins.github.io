@@ -11,6 +11,7 @@ jobs:
         uses: actions/checkout@v2
 
   UpdateRepos:
+    needs: ObtainSource
     container:
       image: archlinux:latest
       volumes:
@@ -22,6 +23,7 @@ jobs:
       options: --cpus 1
 
   UploadToGHPages:
+    needs: UpdateRepos
     steps:
       - uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
