@@ -20,7 +20,7 @@ jobs:
         - "--workdir /workspace/arch-repos"
         - "-c ./scripts/update-repos.sh"
 
-  Upload to GH Pages:
+  UploadToGHPages:
     steps:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.5
