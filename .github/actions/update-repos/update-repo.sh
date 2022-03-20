@@ -5,4 +5,4 @@ REPO_NAME="$1"
 
 cd "$REPO_NAME"
 echo "Updating repo $REPO_NAME"
-find . -name '*.pkg.tar.*' -exec "echo "Adding package {} repo "${REPO_NAME}" && repo-add -n "./${REPO_NAME}.db" {} \;
+find . -name '*.pkg.tar.*' -exec repo-add -n "./${REPO_NAME}.db" {} \;
