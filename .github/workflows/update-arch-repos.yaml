@@ -5,24 +5,15 @@ on:
       - main
 
 jobs:
-  ObtainSource:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-
   UpdateRepos:
     needs: ObtainSource
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
       - run: "pwd; ls; cd arch-repos && ./scripts/update-repos.sh"
-    container:
-      image: archlinux:latest
-
-  UploadToGHPages:
-    runs-on: ubuntu-latest
-    needs: UpdateRepos
-    steps:
+        container:
+          image: archlinux:latest
       - uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
           branch: gh-pages
