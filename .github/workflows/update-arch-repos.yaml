@@ -6,13 +6,13 @@ on:
 
 jobs:
   ObtainSource:
+    runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
 
   UpdateRepos:
     needs: ObtainSource
-    runs-on: ubuntu-latest
     steps:
       - run: "./scripts/update-repos.sh"
     container:
@@ -22,6 +22,7 @@ jobs:
       options: "--entrypoint /usr/bin/bash --workdir /workspace/arch-repos --cpus 1"
 
   UploadToGHPages:
+    runs-on: ubuntu-latest
     needs: UpdateRepos
     steps:
       - uses: JamesIves/github-pages-deploy-action@v4.2.5
