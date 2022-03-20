@@ -1,19 +1,24 @@
 name: Update Arch Repos
-on: [page_build]
+on:
+  push:
+    branches:
+      - main
+  merge:
+    branches:
+      - main
+
 jobs:
   UpdateRepos:
-    runs-on: archlinux
+    runs-on: archlinux/archlinux:latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: Switch to repos folder
-        run: cd ${{ github.workspace }}/arch-repos/
+
       - name: Update Repos
-        run: ./scripts/update-repos.sh
-      - name: Upload Repo Database Artifacts
-        uses: actions/upload-artifact@v3
+        run: cd ${{ github.workspace }}/arch-repos/ && ./scripts/update-repos.sh
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
-          name: repo-dbs
-          path: |
-            arch-repos/**/*.db
-            arch-repos/**/*.db.tar.xz
+          branch: gh-pages
+          folder: .
