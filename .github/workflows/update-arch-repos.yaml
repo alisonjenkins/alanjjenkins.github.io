@@ -10,10 +10,6 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: "pacman -Sy --noconfirm git; cd arch-repos && ./scripts/update-repos.sh"
-      - uses: JamesIves/github-pages-deploy-action@v4.2.5
-        with:
-          branch: gh-pages
-          folder: .
+      - run: "pacman -Sy --noconfirm git; cd arch-repos && ./scripts/update-repos.sh && git add . && git commit -m 'Deploying to gh-pages' && git push origin gh-pages"
     container:
       image: archlinux:latest
