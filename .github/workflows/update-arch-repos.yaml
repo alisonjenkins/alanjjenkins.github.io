@@ -6,12 +6,13 @@ on:
 
 jobs:
   UpdateRepos:
-    runs-on: archlinux/archlinux:latest
+    runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
 
       - name: Update Repos
+        uses: docker://archlinux:latest
         run: cd ${{ github.workspace }}/arch-repos/ && ./scripts/update-repos.sh
 
       - name: Deploy
