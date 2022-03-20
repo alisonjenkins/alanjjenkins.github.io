@@ -7,5 +7,5 @@ for REPO_DIR in ./*/; do
     continue
   fi
   
-  ./scripts/update-repo.sh "$REPO_DIR"
+  update-repo.sh "$REPO_DIR"
 done
