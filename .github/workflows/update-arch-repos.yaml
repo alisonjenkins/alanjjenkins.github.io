@@ -18,10 +18,10 @@ jobs:
       image: archlinux:latest
       volumes:
         - "${{ github.workspace }}:/workspace"
-      command:
-        - "--entrypoint /usr/bin/bash"
-        - "--workdir /workspace/arch-repos"
-      options: --cpus 1
+      options: 
+        - --entrypoint /usr/bin/bash
+        - --workdir /workspace/arch-repos
+        - --cpus 1
 
   UploadToGHPages:
     needs: UpdateRepos
