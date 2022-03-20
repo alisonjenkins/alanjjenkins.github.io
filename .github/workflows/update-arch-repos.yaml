@@ -5,19 +5,25 @@ on:
       - main
 
 jobs:
-  UpdateRepos:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
+  - ObtainSource:
+      steps:
+        - name: Check out repository code
+          uses: actions/checkout@v2
+    
+  - UpdateRepos:
+      container:
+        image: archlinux:latest
+        volumes:
+          - "${{ github.workspace }}:/workspace"
+        command:
+          - "--entrypoint /usr/bin/bash"
+          - "--workdir /workspace/arch-repos"
+          - "-c ./scripts/update-repos.sh"
 
-      - name: Update Repos
-        uses: docker://archlinux:latest
-        with:
-          entrypoint: /usr/bin/bash
-          args: -c cd ${{ github.workspace }}/arch-repos/ && ./scripts/update-repos.sh
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
-        with:
-          branch: gh-pages
-          folder: .
+  - Upload to GH Pages:
+      steps:
+        - name: Deploy
+          uses: JamesIves/github-pages-deploy-action@v4.2.5
+          with:
+            branch: gh-pages
+            folder: .
