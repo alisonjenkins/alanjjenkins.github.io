@@ -5,4 +5,6 @@ REPO_NAME="$1"
 
 cd "$REPO_NAME"
 echo "Updating repo $REPO_NAME"
-find . -name '*.pkg.tar.*' -exec repo-add -n "${REPO_NAME}.db.tar.gz" {} \;
+repo-add -n "${REPO_NAME}.db.tar.gz" *.pkg.tar.*;
+rm -f "${REPO_NAME}.db"
+tar xvf *.db.tar.gz
