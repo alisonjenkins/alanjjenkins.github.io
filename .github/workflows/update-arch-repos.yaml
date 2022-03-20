@@ -12,6 +12,8 @@ jobs:
 
   UpdateRepos:
     needs: ObtainSource
+    steps:
+      - run: "./scripts/update-repos.sh"
     container:
       image: archlinux:latest
       volumes:
@@ -19,7 +21,6 @@ jobs:
       command:
         - "--entrypoint /usr/bin/bash"
         - "--workdir /workspace/arch-repos"
-        - "-c ./scripts/update-repos.sh"
       options: --cpus 1
 
   UploadToGHPages:
