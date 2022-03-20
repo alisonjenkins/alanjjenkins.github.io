@@ -15,7 +15,7 @@ jobs:
     needs: ObtainSource
     runs-on: ubuntu-latest
     steps:
-      - run: "cd arch-repos && ./scripts/update-repos.sh"
+      - run: "pwd; cd arch-repos && ./scripts/update-repos.sh"
     container:
       image: archlinux:latest
 
