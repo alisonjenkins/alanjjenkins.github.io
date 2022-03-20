@@ -1,0 +1,7 @@
+name: 'Update Repos'
+description: 'Updates Arch Repos'
+runs:
+  using: 'docker'
+  image: archlinux:latest
+  args:
+    - cd arch-repos && ./scripts/update-repos.sh
