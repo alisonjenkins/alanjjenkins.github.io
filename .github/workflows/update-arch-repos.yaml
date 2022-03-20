@@ -11,15 +11,15 @@ jobs:
         uses: actions/checkout@v2
 
   UpdateRepos:
-    steps:
-      - container:
-          image: archlinux:latest
-          volumes:
-            - "${{ github.workspace }}:/workspace"
-          command:
-            - "--entrypoint /usr/bin/bash"
-            - "--workdir /workspace/arch-repos"
-            - "-c ./scripts/update-repos.sh"
+    container:
+      image: archlinux:latest
+      volumes:
+        - "${{ github.workspace }}:/workspace"
+      command:
+        - "--entrypoint /usr/bin/bash"
+        - "--workdir /workspace/arch-repos"
+        - "-c ./scripts/update-repos.sh"
+      options: --cpus 1
 
   UploadToGHPages:
     steps:
