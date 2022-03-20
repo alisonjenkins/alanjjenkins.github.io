@@ -4,4 +4,4 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - cd arch-repos && ./scripts/update-repos.sh
+    - ./scripts/update-repos.sh

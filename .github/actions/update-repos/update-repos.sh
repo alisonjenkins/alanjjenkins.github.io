@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 set -euo pipefail
-find . -type d -maxdepth 1 -exec update-repo.sh {} \;
+cd ./arch-repos && find . -type d -maxdepth 1 -exec update-repo.sh {} \;
