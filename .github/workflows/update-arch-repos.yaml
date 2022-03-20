@@ -18,9 +18,6 @@ jobs:
       - run: "./scripts/update-repos.sh"
     container:
       image: archlinux:latest
-      volumes:
-        - "${{ github.workspace }}:/workspace"
-      options: "--entrypoint /usr/bin/bash --workdir /workspace/arch-repos --cpus 1"
 
   UploadToGHPages:
     runs-on: ubuntu-latest
