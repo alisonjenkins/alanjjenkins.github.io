@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: "pwd; cd arch-repos && ./scripts/update-repos.sh"
+      - run: "pacman -Sy --noconfirm git; cd arch-repos && ./scripts/update-repos.sh"
       - uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
           branch: gh-pages
