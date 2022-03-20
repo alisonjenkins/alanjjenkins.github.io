@@ -12,6 +12,7 @@ jobs:
 
   UpdateRepos:
     needs: ObtainSource
+    runs-on: ubuntu-latest
     steps:
       - run: "./scripts/update-repos.sh"
     container:
