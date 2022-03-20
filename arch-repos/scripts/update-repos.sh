@@ -6,6 +6,6 @@ for REPO_DIR in ./*/; do
   if [[ "$REPO_DIR" != "scripts" ]]; then
     continue
   fi
-
+  
   ./scripts/update-repo.sh "$REPO_DIR"
 done
