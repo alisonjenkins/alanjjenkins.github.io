@@ -1,0 +1,12 @@
+name: Update Arch Repos
+on: [page_build]
+jobs:
+  UpdateRepos:
+    runs-on: archlinux
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Switch to repos folder
+        run: cd ${{ github.workspace }}/arch-repos/
+      - name: Update Repos
+        run: ./scripts/update-repos.sh
