@@ -13,8 +13,9 @@ jobs:
 
       - name: Update Repos
         uses: docker://archlinux:latest
-        run: cd ${{ github.workspace }}/arch-repos/ && ./scripts/update-repos.sh
-
+        with:
+          entrypoint: /usr/bin/bash
+          args: -c "cd ${{ github.workspace }}/arch-repos/ && ./scripts/update-repos.sh"
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
